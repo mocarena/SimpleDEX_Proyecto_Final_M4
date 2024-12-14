@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleDEX Project</title>
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=50284&format=png&color=000000" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="dist/styles.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-800 to-black text-white">
+    <div class="w-full max-w-4xl px-6 py-10">
+        <!-- Header -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold">SimpleDEX</h1>
+            <p class="text-gray-400 mt-2">Intercambia y Gestiona tus Tokens</p>
+        </div>
+
+        <!-- Wallet Actions -->
+        <div class="text-center mb-8">
+            <button id="btn-connect" class="bg-blue-600 px-4 py-2 rounded-lg text-lg font-medium">Conectar Wallet</button>
+            <button id="btn-disconnect" class="bg-red-600 px-4 py-2 rounded-lg text-lg font-medium hidden">Desconectar</button>
+        </div>
+
+        <div id="wallet-info" class="text-center text-gray-400 mb-8 hidden">
+            <p>Estado: <span id="status-text">Conectado</span></p>
+            <p>Dirección: <span id="wallet-address">-</span></p>
+            <p>Balance ETH: <span id="eth-balance">-</span></p>
+            <p>Gas: <span id="gas-amount">-</span></p>
+            <p>Red: <span id="network-name">-</span></p>
+        </div>
+
+        <!-- Functions Section -->
+        <div id="functions" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Add Liquidity -->
+            <div class="card p-6 rounded-lg shadow-lg">
+                <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                    <img src="https://img.icons8.com/?size=100&id=FWdu1NyFNWvZ&format=png&color=12B886" alt="Add Liquidity" class="w-6">
+                    Agregar Liquidez
+                </h2>
+                <label for="addLiquidityTokenA" class="block text-sm mb-1">Monto Token A:</label>
+                <input type="number" id="addLiquidityTokenA" class="w-full px-3 py-2 mb-4 rounded bg-gray-800 border border-gray-700 text-white">
+                <label for="addLiquidityTokenB" class="block text-sm mb-1">Monto Token B:</label>
+                <input type="number" id="addLiquidityTokenB" class="w-full px-3 py-2 mb-4 rounded bg-gray-800 border border-gray-700 text-white">
+                <button id="btn-addLiquidity" class="btn-primary px-3 py-1 rounded font-medium">Agregar Liquidez</button>
+            </div>
+
+            <!-- Remove Liquidity -->
+            <div class="card p-6 rounded-lg shadow-lg">
+                <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                    <img src="https://img.icons8.com/ios-filled/50/fa5252/cash-in-hand.png" alt="Remove Liquidity" class="w-6">
+                    Retirar Liquidez
+                </h2>
+                <label for="removeLiquidityTokenA" class="block text-sm mb-1">Monto Token A:</label>
+                <input type="number" id="removeLiquidityTokenA" class="w-full px-3 py-2 mb-4 rounded bg-gray-800 border border-gray-700 text-white">
+                <label for="removeLiquidityTokenB" class="block text-sm mb-1">Monto Token B:</label>
+                <input type="number" id="removeLiquidityTokenB" class="w-full px-3 py-2 mb-4 rounded bg-gray-800 border border-gray-700 text-white">
+                <button id="btn-removeLiquidity" class="bg-red-600 px-3 py-1 rounded font-medium">Retirar Liquidez</button>
+            </div>
+
+            <!-- Swap Tokens -->
+            <div class="card p-6 rounded-lg shadow-lg">
+                <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                    <img src="https://img.icons8.com/ios-filled/50/10b981/refresh.png" alt="Swap Tokens" class="w-6">
+                    Intercambiar Tokens
+                </h2>
+                <div class="mb-4">
+                    <label for="tokenToSwap" class="block text-sm mb-1">Seleccionar Intercambio:</label>
+                    <select id="tokenToSwap" class="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white">
+                        <option value="tokenA">Token A</option>
+                        <option value="tokenB">Token B</option>
+                    </select>
+                </div>
+                <label for="swapAmount" class="block text-sm mb-1">Cantidad a Intercambiar:</label>
+                <input type="number" id="swapAmount" class="w-full px-3 py-2 mb-4 rounded bg-gray-800 border border-gray-700 text-white">
+                <button id="btn-swap" class="btn-primary px-4 py-2 rounded font-medium w-full">Intercambiar</button>
+            </div>
+
+            <!-- Get Token Price -->
+            <div class="card p-6 rounded-lg shadow-lg">
+                <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                    <img src="https://img.icons8.com/ios-filled/50/3b82f6/price-tag.png" alt="Token Price" class="w-6">
+                    Obtener Precio
+                </h2>
+                <label for="tokenPrice" class="block text-sm mb-1">Seleccionar Token:</label>
+                <select id="tokenPrice" class="w-full px-3 py-2 mb-4 rounded bg-gray-800 border border-gray-700 text-white">
+                    <option value="tokenA">Token A</option>
+                    <option value="tokenB">Token B</option>
+                </select>
+                <button id="btn-getPrice" class="btn-primary px-4 py-2 rounded font-medium w-full">Obtener Precio</button>
+                <p id="priceResult" class="mt-4 text-gray-400">Precio: <span>-</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>

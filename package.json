@@ -1,0 +1,25 @@
+{
+  "name": "proyecto-simpledex-trabajo-final",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./src/styles.css -o ./dist/styles.css"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/typography": "^0.5.15",
+    "ethers": "^6.13.4"
+  },
+  "keywords": [],
+  "author": "Mónica Carena",
+  "license": "ISC",
+  "description": "Intercambio de Tokens",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.16"
+  }
+}
